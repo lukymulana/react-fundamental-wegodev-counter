@@ -1,14 +1,10 @@
 import  { useState } from 'react'
 
-import './App.css';
-
 import Navbar from './components/Navbar';
 import Container from './components/Container';
 import SearchInput from './components/SearchInput';
 import Info from './components/Info';
-
-import plusIcon from './assets/plus-icon.svg'
-import minusIcon from './assets/minus-icon.svg'
+import Todos from './components/Todos';
 
 function App() {
   const [value, setValue] = useState('')
@@ -79,24 +75,11 @@ function App() {
         />
 
         {todos.length > 0 ? (
-          <div className='todos'>
-            {todos.map((todo, index, arr) => {
-              return (
-                <div key={index} className={`todo ${!(arr.length === index + 1) && 'todo-divider'}`}>
-                  {todo.title}
-                  <div className='todo-icon-wrapper'>
-                    <div className='todo-count'>{todo.count}</div>
-                    <button onClick={() => handleSubtractionCount(index)} className='todo-action-button'>
-                      <img src={minusIcon} alt='minus icon' />
-                    </button>
-                    <button onClick={() => handleAdditionalCount(index)} className='todo-action-button'>
-                      <img src={plusIcon} alt='plus icon' />
-                    </button>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+          <Todos
+            todos={todos}
+            onSubstraction={(index) => handleSubtractionCount(index)}
+            onAddition={(index) => handleAdditionalCount(index)}
+          />
         ) : (
           <div>Kosong</div>
         )}
