@@ -1,10 +1,10 @@
 import styles from './Container.module.css'
 import PropTypes from 'prop-types'
 
-const Container = (props) => {
+const Container = ({ children }) => {
     return (
         <section className={styles.container}>
-            {props.children}
+            {children}
         </section>
     )
 }
